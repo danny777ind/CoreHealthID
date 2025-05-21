@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - CoreHealth</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+<div class="bg-white p-8 rounded-xl shadow-lg w-96">
+  <h2 class="text-2xl font-bold text-center mb-4" id="authTitle">Login</h2>
+  <input id="username" type="text" placeholder="Username" class="w-full px-4 py-2 mb-2 border rounded"/>
+  <input id="password" type="password" placeholder="Password" class="w-full px-4 py-2 mb-4 border rounded"/>
+  <button onclick="login()" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Login</button>
+  <p class="text-sm text-center mt-4">Belum punya akun? <a href="#" onclick="toggleAuth()" class="text-blue-600">Register</a></p>
+</div>
+
+<script>
+  let isLogin = true;
+
+  function toggleAuth() {
+    isLogin = !isLogin;
+    document.getElementById('authTitle').innerText = isLogin ? 'Login' : 'Register';
+    document.querySelector('button').innerText = isLogin ? 'Login' : 'Register';
+  }
+
+  function login() {
+    const username = document.getElementById('username').value;
+    if (username) {
+      localStorage.setItem('username', username);  // Simpan nama
+    }
+    window.location.href = "home.html";
+  }
+</script>
+
+</body>
+</html>
