@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Home - CoreHealth</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    .square {
+      width: 500px;
+      height: 500px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .square img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .horizontal-scroll {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 1rem 0;
+      scrollbar-width: thin;
+    }
+    .horizontal-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+    .horizontal-scroll::-webkit-scrollbar-thumb {
+      background-color: rgba(100, 100, 100, 0.5);
+      border-radius: 4px;
+    }
+    /* Biar carousel full lebar viewport */
+    .carousel-wrapper {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      background: white;
+      padding: 0 1rem; /* sedikit padding kiri kanan agar ga mepet banget */
+      box-sizing: border-box;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800 min-h-screen">
+
+<!-- Navbar -->
+<nav class="bg-white shadow p-4 flex justify-between items-center">
+  <div class="text-xl font-bold">CoreHealth Indonesia</div>
+  <div class="space-x-4">
+    <a href="riwayat.html" class="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300">Riwayat</a>
+    <a href="profile.html" class="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300">Profile</a>
+  </div>
+</nav>
+
+<!-- Carousel Full Width -->
+<div class="carousel-wrapper">
+  <div id="carousel" class="horizontal-scroll">
+    <div class="square" onclick="openWiki('Jantung')">
+      <img src="foto/jantung.webp" alt="Jantung" />
+    </div>
+    <div class="square" onclick="openWiki('Lambung')">
+      <img src="foto/lambung.jpeg" alt="Lambung" />
+    </div>
+    <div class="square" onclick="openWiki('Hati')">
+      <img src="foto/hati.webp" alt="Hati" />
+    </div>
+    <div class="square" onclick="openWiki('Paru-paru')">
+      <img src="foto/paru-paru.webp" alt="Paru-Paru" />
+    </div>
+    <div class="square" onclick="openWiki('Ginjal')">
+      <img src="foto/Ginjal.webp" alt="Ginjal" />
+    </div>
+    <div class="square" onclick="openWiki('Pankreas')">
+      <img src="foto/Pankreas.jpg" alt="Pankreas" />
+    </div>
+    <div class="square" onclick="openWiki('Usus_halus')">
+      <img src="foto/usus-halus.png" alt="Usus Halus" />
+    </div>
+    <div class="square" onclick="openWiki('Usus_besar')">
+      <img src="foto/usus-besar.jpg" alt="Usus Besar" />
+    </div>
+    <div class="square" onclick="openWiki('Kandung_kemih')">
+      <img src="foto/kandung-kemih.png" alt="Kandung Kemih" />
+    </div>
+    <div class="square" onclick="openWiki('Otak')">
+      <img src="foto/otak.png" alt="Otak" />
+    </div>
+    <div class="square" onclick="openWiki('Penyakit_radang_mulut')">
+      <img src="foto/Mulut.webp" alt="Mulut" />
+    </div>
+    <!-- Tambah gambar lain jika perlu -->
+  </div>
+</div>
+
+<!-- Tombol Prev Next Centered -->
+<div class="flex justify-center space-x-4 mt-4 mb-8">
+  <button onclick="scrollPrev()" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">Prev</button>
+  <button onclick="scrollNext()" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">Next</button>
+</div>
+
+<!-- Konten Utama Lainnya (jika ada) -->
+<main class="max-w-4xl mx-auto p-6">
+  <!-- isi konten lain jika perlu -->
+</main>
+
+<script>
+  function openWiki(topic) {
+    window.open(`https://id.wikipedia.org/wiki/${topic}`, '_blank');
+  }
+
+  const carousel = document.getElementById('carousel');
+  const scrollAmount = 520; // 500px kotak + 20px gap kira-kira
+
+  function scrollNext() {
+    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  }
+
+  function scrollPrev() {
+    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
